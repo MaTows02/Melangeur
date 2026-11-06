@@ -1,0 +1,52 @@
+{
+    "manifest_version":  3,
+    "name":  "Melangeur",
+    "version":  "1.0.0",
+    "description":  "Volume par onglet et détection du son pour Melangeur.",
+    "key":  "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6aPwmkMCVBRTJVj9cxElmEL0AgBPDodwSfs8mbtIlJmA0OJfDkjwOJ5gDhk2pTtz7RsvFf1rMmTJIdqO7rpGlNwapqWWNLEAMtR7W3bZsr3fRG1kF/ERmSLldNK+/uz/L+a1TfDBwGx2qK3uOpmaG/jg9TG9oeSodi+GWVRupCpO0Ndyweuf0tQFLgFfoHwggIwc6W3XVkYeb8or0lVhtE0z+gT3lXfIdx+BANFOIhTT/9O6FibOP2jOCxPhLiftNF9Kj5m2SpzQfZTkPE55Alxti1jCGz2rgM7FRQClICDztwzTmL24olfYBPudIHamSBHpBm8Wi6T2J3KRIaFFgQIDAQAB",
+    "minimum_chrome_version":  "111",
+    "icons":  {
+                  "16":  "icon16.png",
+                  "48":  "icon48.png",
+                  "128":  "icon128.png"
+              },
+    "permissions":  [
+                        "tabs",
+                        "nativeMessaging",
+                        "storage",
+                        "scripting"
+                    ],
+    "host_permissions":  [
+                             "\u003call_urls\u003e"
+                         ],
+    "background":  {
+                       "service_worker":  "background.js"
+                   },
+    "content_scripts":  [
+                            {
+                                "match_origin_as_fallback":  true,
+                                "run_at":  "document_start",
+                                "js":  [
+                                           "page.js"
+                                       ],
+                                "matches":  [
+                                                "\u003call_urls\u003e"
+                                            ],
+                                "all_frames":  true,
+                                "world":  "MAIN",
+                                "match_about_blank":  true
+                            },
+                            {
+                                "match_origin_as_fallback":  true,
+                                "run_at":  "document_start",
+                                "js":  [
+                                           "bridge.js"
+                                       ],
+                                "matches":  [
+                                                "\u003call_urls\u003e"
+                                            ],
+                                "all_frames":  true,
+                                "match_about_blank":  true
+                            }
+                        ]
+}

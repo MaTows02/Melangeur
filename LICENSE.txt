@@ -1,0 +1,32 @@
+CONTRAT DE LICENCE DE MELANGEUR
+
+Copyright (c) 2026 MaTows. Tous droits réservés.
+
+Melangeur (le programme, son extension de navigateur, leur code source et leurs
+ressources) est protégé par le droit d'auteur. Il n'est pas sous licence libre.
+
+1. CE QUI EST PERMIS
+Vous pouvez installer et utiliser Melangeur sur vos propres ordinateurs, à des
+fins personnelles ou professionnelles. Vous pouvez consulter le code source
+publié.
+
+2. CE QUI N'EST PAS PERMIS
+Sans autorisation écrite de MaTows, vous ne pouvez pas :
+- vendre, louer ou redistribuer Melangeur, modifié ou non ;
+- publier une version dérivée, ou réutiliser son code dans un autre produit.
+Ces limites ne s'appliquent pas aux droits que la loi vous accorde et auxquels
+il n'est pas possible de renoncer.
+
+3. COMPOSANTS TIERS
+Certains composants restent soumis à leur propre licence : voir
+THIRD_PARTY_NOTICES.md.
+
+4. ABSENCE DE GARANTIE
+Dans toute la mesure permise par la loi, Melangeur est fourni « en l'état »,
+sans garantie d'aucune sorte. Dans la même mesure, MaTows ne peut être tenu
+responsable des dommages résultant de son utilisation.
+
+5. DONNÉES PERSONNELLES
+Le traitement des données est décrit dans PRIVACY.md.
+
+Pour toute demande de licence : https://github.com/MaTows02/Melangeur/issues
