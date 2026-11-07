@@ -1,6 +1,6 @@
 # Publier l'extension
 
-Fichier à envoyer : `dist/Melangeur-extension-1.0.0-store.zip`, créé par `packaging/build.ps1`.
+Fichier à envoyer : `dist/Melangeur-extension-1.0.1-store.zip`, créé par `packaging/build.ps1`.
 
 ## Étapes
 

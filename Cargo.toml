@@ -1,6 +1,6 @@
 [package]
 name = "melangeur"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2024"
 description = "Mélangeur de volume par application et par onglet pour Windows"
 authors = ["MaTows"]

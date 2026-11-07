@@ -11,7 +11,7 @@ Le mélangeur de volume pour Windows qui descend jusqu'à l'onglet : baissez You
 
 ## Installation
 
-1. Téléchargez `Melangeur-Setup-1.0.0.exe` dans les [versions publiées](https://github.com/MaTows02/Melangeur/releases).
+1. Téléchargez `Melangeur-1.0.1.msi` dans les [versions publiées](https://github.com/MaTows02/Melangeur/releases).
 2. Lancez-le : aucun droit administrateur n'est demandé. Le programme n'étant pas encore signé, Windows SmartScreen peut afficher un avertissement (**Informations complémentaires**, puis **Exécuter quand même**).
 3. Cliquez sur l'icône à trois curseurs, près de l'horloge.
 
@@ -38,14 +38,14 @@ En attendant sa publication sur les stores :
 
 ## Compilation
 
-Prérequis : Rust stable, les Build Tools C++ de Visual Studio et, pour l'installateur, [Inno Setup 6](https://jrsoftware.org/isinfo.php).
+Prérequis : Rust stable, les Build Tools C++ de Visual Studio et, pour l'installateur, [WiX Toolset 3.14](https://github.com/wixtoolset/wix3/releases).
 
 ```bash
 cargo build --release
 ```
 
 ```bash
-powershell -ExecutionPolicy Bypass -File packaging\build.ps1
+powershell -ExecutionPolicy Bypass -File packaging\build.ps1 -WixBin <dossier de WiX>
 ```
 
 | Dossier | Contenu |

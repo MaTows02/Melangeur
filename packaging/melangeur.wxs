@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Installateur Windows Installer de Melangeur, par utilisateur : aucun droit administrateur n'est demandé. -->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="Melangeur" Language="1036" Codepage="1252" Version="1.0.1" Manufacturer="MaTows"
+           UpgradeCode="7E3B5A16-52C4-4E0B-9A63-3C1D7F2B8E41">
+    <Package InstallerVersion="500" Compressed="yes" InstallScope="perUser" InstallPrivileges="limited"
+             Platform="x64" SummaryCodepage="1252" Description="Melangeur" Manufacturer="MaTows" />
+    <MajorUpgrade DowngradeErrorMessage="Une version plus récente de Melangeur est déjà installée." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Icon Id="melangeur.ico" SourceFile="assets\melangeur.ico" />
+    <Property Id="ARPPRODUCTICON" Value="melangeur.ico" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/MaTows02/Melangeur" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="LocalAppDataFolder">
+        <Directory Id="ProgramsFolderUser" Name="Programs">
+          <Directory Id="INSTALLFOLDER" Name="Melangeur" />
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder" />
+    </Directory>
+
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="MainProgram" Guid="4F0C8D7A-6B21-4C3E-8A95-1D2E7B6A9C10" Win64="yes">
+        <File Id="MelangeurExe" Source="target\release\melangeur.exe" />
+        <File Id="LicenseFile" Source="LICENSE.txt" />
+        <File Id="PrivacyFile" Source="PRIVACY.md" />
+        <File Id="NoticesFile" Source="THIRD_PARTY_NOTICES.md" />
+        <RegistryValue Root="HKCU" Key="Software\MaTows\Melangeur" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
+        <RemoveFolder Id="RemoveInstallFolder" On="uninstall" />
+        <RemoveFolder Id="RemoveProgramsFolder" Directory="ProgramsFolderUser" On="uninstall" />
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="ProgramMenuFolder">
+      <Component Id="StartMenuShortcut" Guid="B8A1F2C4-93D7-4E6B-A0C5-6F7D2E1B3A48" Win64="yes">
+        <Shortcut Id="MelangeurShortcut" Name="Melangeur" Target="[INSTALLFOLDER]melangeur.exe"
+                  WorkingDirectory="INSTALLFOLDER" Icon="melangeur.ico" />
+        <RegistryValue Root="HKCU" Key="Software\MaTows\Melangeur" Name="Shortcut" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="Main" Title="Melangeur" Level="1">
+      <ComponentRef Id="MainProgram" />
+      <ComponentRef Id="StartMenuShortcut" />
+    </Feature>
+
+    <!-- Avant la suppression des fichiers : ferme le programme et retire ce qu'il a créé. -->
+    <CustomAction Id="CleanUserData" FileKey="MelangeurExe" ExeCommand="--uninstall"
+                  Execute="deferred" Impersonate="yes" Return="ignore" />
+    <CustomAction Id="StartMelangeur" FileKey="MelangeurExe" ExeCommand=""
+                  Execute="immediate" Impersonate="yes" Return="asyncNoWait" />
+    <InstallExecuteSequence>
+      <Custom Action="CleanUserData" Before="RemoveFiles">REMOVE="ALL"</Custom>
+      <Custom Action="StartMelangeur" After="InstallFinalize">NOT REMOVE</Custom>
+    </InstallExecuteSequence>
+
+    <UIRef Id="WixUI_Minimal" />
+    <WixVariable Id="WixUILicenseRtf" Value="dist\license.rtf" />
+  </Product>
+</Wix>

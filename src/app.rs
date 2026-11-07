@@ -72,4 +72,7 @@ pub fn uninstall() {
     set_autostart(false);
     ext::unregister_host();
     ext::stop_hosts();
+    if let Some(base) = std::env::var_os("LOCALAPPDATA") {
+        let _ = std::fs::remove_dir_all(std::path::Path::new(&base).join("Melangeur"));
+    }
 }
